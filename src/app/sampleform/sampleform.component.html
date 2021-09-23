@@ -1,0 +1,44 @@
+<form class="form-group" (submit)="submitformdata(f)" #f="ngForm">
+  <div ngModelGroup="userdata">
+    <div class="form-control">
+      <label
+        >Name : <input type="text" name="username" ngModel required
+      /></label>
+      |
+      <button class="btn btn-primary" type="button" (click)="setUserName()">
+        Set User Name
+      </button>
+    </div>
+
+    <div class="form-control">
+      <label
+        >Age : <input type="text" name="age" [ngModel]="defaultage"
+      /></label>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label
+      >Email :
+      <input
+        type="text"
+        name="email"
+        [(ngModel)]="differentemailvariable"
+        #email="ngModel"
+        required
+        email
+    /></label>
+    <p *ngIf="!email.valid && email.touched">Email not valid !!</p>
+    <p *ngIf="email.value != ''">{{ differentemailvariable }}</p>
+  </div>
+  <div class="form-control">
+    <button class="btn btn-primary" type="submit" [disabled]="!f.valid">
+      Save Data
+    </button>
+  </div>
+</form>
+<div class="form-control">
+  <button class="btn btn-primary" type="button" (click)="clearForm()">
+    Clear Data
+  </button>
+</div>
